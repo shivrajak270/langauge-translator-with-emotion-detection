@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Languages Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            padding: 20px;
+        }
+
+        .language-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .language-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .language-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .language-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .language-region {
+            font-size: 0.9rem;
+            color: #718096;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .language-card:nth-child(n) {
+            animation-delay: calc(n * 0.1s);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title fade-in">Discover Indian Languages</h1>
+        <p class="subtitle fade-in">Explore the rich linguistic diversity of India</p>
+        
+        <div class="languages-grid">
+            <div class="language-card fade-in" onclick="navigateToPage('hindi')">
+                <div class="language-name">हिंदी</div>
+                <div class="language-region">Hindi</div>
+            </div>
+            <div class="language-card fade-in" onclick="navigateToPage('bengali')">
+                <div class="language-name">বাংলা</div>
+                <div class="language-region">Bengali</div>
+            </div>
+            <div class="language-card fade-in" onclick="navigateToPage('telugu')">
+                <div class="language-name">తెలుగు</div>
+                <div class="language-region">Telugu</div>
+            </div>
+            <div class="language-card fade-in" onclick="navigateToPage('marathi')">
+                <div class="language-name">मराठी</div>
+                <div class="language-region">Marathi</div>
+            </div>
+            <div class="language-card fade-in" onclick="navigateToPage('tamil')">
+                <div class="language-name">தமிழ்</div>
+                <div class="language-region">Tamil</div>
+            </div>
+            <div class="language-card fade-in" onclick="navigateToPage('gujarati')">
+                <div class="language-name">ગુજરાતી</div>
+                <div class="language-region">Gujarati</div>
+            </div>
+            <div class="language-card fade-in" onclick="navigateToPage('malayalam')">
+                <div class="language-name">മലയാളം</div>
+                <div class="language-region">Malayalam</div>
+            </div>
+            <div class="language-card fade-in" onclick="navigateToPage('kannada')">
+                <div class="language-name">ಕನ್ನಡ</div>
+                <div class="language-region">Kannada</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigateToPage(language) {
+            const languageLinks = {
+                'hindi': 'http://localhost:8080/hindi/hindi.html',
+                'bengali': 'http://localhost:8080/Bengali/Bengali.html',
+                'telugu': 'http://localhost:8080/telugu/telugu.html',
+                'marathi': 'http://localhost:8080/marati/marathi.html',
+                'tamil': 'http://localhost:8080/tamil/Tamil.html',
+                'gujarati': 'http://localhost:8080/gujarati/gujarati.html',
+                'malayalam': 'http://localhost:8080/malyalam/malyalam.html',
+                'kannada': 'http://localhost:8080/kannada/kannada.html',
+            };
+
+            const pageUrl = languageLinks[language];
+            if (pageUrl) {
+                window.location.href = pageUrl;
+            } else {
+                alert("Language page not found.");
+            }
+        }
+    </script>
+</body>
+</html>
